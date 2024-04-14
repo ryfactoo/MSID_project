@@ -1,0 +1,60 @@
+\section{Zbiór danych i jego przetwarzanie}
+% Delete the text and write your Theory/ Background Information here:
+%------------------------------------
+
+\subsection{Zbiór danych}
+\hspace{\parindent}
+Zbiór wykorzystany w pracy został zescrapowny za pomocą youyube Data api v3, które dostarcza nam youtube, proces ten został podzielony na:
+\begin{itemize}
+  \item Pobieranie id filmów z podanego kanału\footnote{ScrapChanel.py}
+  \item Pobieranie informacji o filmie z podanego id filmu\footnote{ScrapDetails.py}
+\end{itemize}
+Metoda z wybieraniem kanału została wybrana po nieudanej próbie z użyciem szukania filmów \footnote{ScrapSearch.py}. Metoda ta polega na szukaniu przez api filmów, które spełniają podane do metody filtry. Próba ta nie powiodła się z przyczyny zbyt dużego zużycia limitu, który nakłada youyube api v3. Kanały użyte do metody z kanałami zostały wybrane ręcznie (28 kanałów), co pozwoliło na zebranie 26965 rekordów.
+
+Spośród
+\href{https://mixedanalytics.com/blog/list-of-youtube-video-category-ids/}{wszystkich kategorii jakie, dostarcza nam youtube,}
+ wybrałem do projektu pięć najpopularniejszych kategorii:
+
+
+\label{kategorie}
+\begin{itemize}
+  \item 2 - Motoryzacja
+  \item 10 - Muzyka
+  \item 17 - Sport
+  \item 24 - Rozrywka
+  \item 25 - Wiadomości i polityka
+\end{itemize}
+
+
+
+Po zescrapowaniu otrzymujemy zbiory, które łączymy,\footnote{merge.py}
+aby utworzyć jeden zbiór, który składa się z poniższych atrybutów:
+\begin{itemize}
+  \item Id filmu
+  \item Opublikowany o
+  \item Ilość wyświetleń
+  \item Ilość komentarzy
+  \item Ilość polubień
+  \item Czy dla dzieci
+  \item Czas trwania
+  \item Id kategorii
+\end{itemize}
+
+\subsection{Przetwarzanie wstępne}
+\hspace{\parindent}
+Podczas przetwarzania zbioru danych zostały
+usunięte rekordy \footnote{Select\_category.py}
+dla innych kategorii niż wybrane \ref{kategorie}.
+
+Atrybut "Opublikowany o" został podzielony na liczbę dni po 01.01.2012 oraz na minuty od północy.\footnote{Select\_category.py}
+
+Brakujące dane w ilości komenatrzy zostały uzupełnione o wartość 0, ponieważ komentarze w tych filamach zostały wyłączone.
+
+Brakujące dane w ilości polubień zostały uzupełnione o wartość średnią z danej kategorii dla filmów znajdujących się w widełkach [95\% ; 105\%] pod względem ilości wyświetleń.
+
+Rekordy z brakującymi danymi w ilości wyświetleń zostały usunięte, ponieważ był tylko jeden taki.
+
+Czas trwania zmieniamy z ISO 8601 na sekundy.
+
+
+

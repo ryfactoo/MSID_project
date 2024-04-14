@@ -1,0 +1,28 @@
+\newlength{\bibsep}
+\documentclass[nonatbib,5p,a4paper]{elsarticle}  % 5p for two columns, 1p for 1 column (this is specific for the elsearticle)
+\usepackage[polish]{babel}                       % Language
+\usepackage[DatePublished]{Code/NTNU-lab}        % remove [DatePublished] to remove dates
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{multirow}
+\usepackage{hyperref}
+\usepackage{csquotes}                            % Must be loaded when babel is loaded to avoid error.
+\input{Code/preamble}                              % Write all preamble code in this file to keep it organised and tidy.
+
+
+
+
+\begin{document}
+\selectlanguage{polish}                         % Sets the language of the document.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\input{Text/0-frontmatter}
+\input{Text/1-Wstęp}
+\input{Text/2-Zbiór danych}
+\input{Text/3-Wstępna analiza}
+\input{Text/4-Przygotowanie modelu}
+\input{Text/5-Wnioski}
+
+
+\end{document}
